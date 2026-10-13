@@ -369,6 +369,25 @@
   .footer-brand a{text-decoration:none;}
   @media(max-width:520px){nav{padding:12px 18px}.header-logo{width:154px;max-height:44px}.hero{padding-top:126px}section{padding:64px 0}.terms-section{padding:64px 0}}
 
+
+  /* Hero de portada: fotografía panorámica con texto sobre una placa translúcida */
+  .hero.hero-banner{padding:112px 0 0;min-height:0;border-bottom:0;background:#e8e6dc}
+  .hero-banner .hero-grid{display:block;max-width:none;padding:0;position:relative;min-height:clamp(540px,64vw,760px)}
+  .hero-banner .hero-copy{position:absolute;z-index:3;left:max(24px,calc((100vw - 1180px)/2 + 24px));top:50%;transform:translateY(-50%);width:min(560px,calc(100% - 48px));padding:30px 34px;background:rgba(247,245,237,.80);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.45)}
+  .hero-banner .eyebrow-plain{color:#4c4b35;margin-bottom:18px}
+  .hero-banner .eyebrow-plain::before{background:#4c4b35}
+  .hero-banner h1{color:#171713;max-width:10ch;font-size:clamp(2.8rem,5.8vw,5.7rem);line-height:.98}
+  .hero-banner h1 em{color:#4c4b35}
+  .hero-banner p.lead{color:#292923;font-size:clamp(1rem,1.25vw,1.15rem);max-width:43ch;margin-top:18px}
+  .hero-banner .hero-visual{position:absolute;inset:0;margin:0;z-index:1}
+  .hero-banner .hero-visual img{width:100%;height:100%;min-height:clamp(540px,64vw,760px);object-fit:cover;object-position:center;border-radius:0}
+  .hero-banner .hero-visual::after{display:none}
+  .hero-banner .hero-stamp{display:none}
+  .hero-banner .hero-ctas{margin-top:24px}
+  .hero-banner .hero-text-link{border-bottom-color:rgba(35,35,25,.35);color:#22221b}
+  .hero-banner .hero-bottomline{position:relative;z-index:2;padding:17px 24px;margin:0;background:rgba(247,245,237,.92);border-top:1px solid rgba(255,255,255,.45);color:#4c4b35}
+  @media(max-width:700px){.hero.hero-banner{padding-top:92px}.hero-banner .hero-grid{min-height:620px}.hero-banner .hero-visual img{min-height:620px;object-position:58% center}.hero-banner .hero-copy{left:16px;top:auto;bottom:74px;transform:none;width:calc(100% - 32px);padding:24px 22px}.hero-banner h1{font-size:clamp(2.7rem,11vw,4.3rem)}.hero-banner .hero-bottomline{display:grid;gap:5px;padding:14px 16px;font-size:.72rem}.hero-banner .hero-ctas{gap:12px}}
+
 </style>
 </head>
 <body>
@@ -388,7 +407,7 @@
 
 <main>
 
-  <section class="hero">
+  <section class="hero hero-banner">
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <p class="eyebrow-plain">Loro Negro · Módulos habitacionales</p>
@@ -400,7 +419,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-label="Módulo habitacional de Loro Negro">
-        <img src="5.png" alt="Módulo habitacional de Loro Negro" fetchpriority="high">
+        <img src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/portada.png" alt="Módulo habitacional Loro Negro integrado al paisaje" fetchpriority="high">
         <div class="hero-stamp"><span class="stamp-number">01 / 03</span><strong>Diseño · Fabricación · Montaje</strong></div>
       </div>
       <div class="hero-bottomline"><span>Construcción en Wood Frame</span><span>Córdoba, Argentina</span><span>Modelos estándar y proyectos a medida</span></div>
@@ -415,7 +434,7 @@
 
       <div class="modules-grid">
         <article class="module-card">
-          <img class="module-photo" src="2.png" alt="Módulo habitacional Loro Negro, modelo Refugio" loading="lazy">
+          <img class="module-photo" src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/18mts.png" alt="Modelo Refugio de 18 metros cuadrados" loading="lazy">
           <div class="module-body">
             <h3>Refugio</h3>
             <p class="module-meta">18 m² · Monoambiente + baño</p>
@@ -424,7 +443,7 @@
           </div>
         </article>
         <article class="module-card">
-          <img class="module-photo" src="3.png" alt="Módulo habitacional Loro Negro, modelo Sierra" loading="lazy">
+          <img class="module-photo" src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/24mts.png" alt="Modelo Sierra de 24 metros cuadrados" loading="lazy">
           <div class="module-body">
             <h3>Sierra</h3>
             <p class="module-meta">24 m² · 1 dorm + estar/cocina + baño</p>
@@ -433,7 +452,7 @@
           </div>
         </article>
         <article class="module-card">
-          <img class="module-photo" src="4.png" alt="Módulo habitacional Loro Negro, modelo Cumbre" loading="lazy">
+          <img class="module-photo" src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/30mts.png" alt="Modelo Cumbre de 30 metros cuadrados" loading="lazy">
           <div class="module-body">
             <h3>Cumbre</h3>
             <p class="module-meta">30 m² · 1 dorm + estar/cocina + baño + deck</p>

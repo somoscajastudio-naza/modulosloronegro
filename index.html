@@ -684,12 +684,22 @@
   const closeButton=modal.querySelector('.gallery-close');
   const prevButton=modal.querySelector('.gallery-prev');
   const nextButton=modal.querySelector('.gallery-next');
+  // Las miniaturas visibles son solo las cuatro fachadas; el visor incluye además interiores.
+  const gallery=[
+    ...items.map(item=>({src:item.querySelector('img').src,alt:item.querySelector('img').alt})),
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%203.40.31%20PM.jpeg',alt:'Interior de módulo habitacional'},
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%203.40.34%20PM.jpeg',alt:'Vista interior del módulo'},
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%203.40.55%20PM.jpeg',alt:'Detalle interior de la vivienda'},
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%204.06.46%20PM.jpeg',alt:'Interior y terminaciones'},
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%204.12.52%20PM.jpeg',alt:'Interior del módulo habitacional'},
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%204.12.52%20PM-2.jpeg',alt:'Vista interior adicional'},
+    {src:'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%205.04.51%20PM.jpeg',alt:'Detalle de la vivienda'}
+  ];
   let index=0,startX=0,startY=0;
   function show(n){
-    index=(n+items.length)%items.length;
-    const thumb=items[index].querySelector('img');
-    image.src=thumb.src;image.alt=thumb.alt;
-    count.textContent=(index+1)+' / '+items.length;
+    index=(n+gallery.length)%gallery.length;
+    image.src=gallery[index].src;image.alt=gallery[index].alt;
+    count.textContent=(index+1)+' / '+gallery.length;
   }
   function open(n){
     show(n);modal.classList.add('is-open');document.body.style.overflow='hidden';
@@ -697,7 +707,7 @@
   }
   function close(){
     modal.classList.remove('is-open');document.body.style.overflow='';
-    image.src='';items[index].focus();
+    image.src='';items[Math.min(index,items.length-1)].focus();
   }
   items.forEach((item,i)=>item.addEventListener('click',()=>open(i)));
   closeButton.addEventListener('click',close);

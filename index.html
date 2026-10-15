@@ -298,6 +298,9 @@
     padding:28px; overflow:hidden;
   }
   .history-figure img{width:72%; opacity:0.14; filter:brightness(0) invert(1);}
+  #nosotros .history-figure{position:relative;aspect-ratio:4/3;padding:0;background:#f4f4f1;border:0;border-radius:22px;}
+  #nosotros .history-figure .history-photo{display:block;width:100%;height:100%;object-fit:cover;opacity:1;filter:none;}
+  #nosotros .history-figure .history-watermark{position:absolute;width:36%;height:auto;max-height:38%;object-fit:contain;opacity:.34;filter:none;right:7%;bottom:7%;}
   .history-copy p{color:var(--concrete); font-size:1.02rem; line-height:1.7;}
   .history-copy p + p{margin-top:16px;}
 
@@ -571,6 +574,10 @@
   </section>
 <section class="alt" id="nosotros">
     <div class="wrap history-grid">
+      <div class="history-figure">
+        <img class="history-photo" src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-15%20at%208.41.54%20PM.jpeg" alt="Equipo y trabajo de Loro Negro" loading="lazy">
+        <img class="history-watermark" src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/BANNER.png-2-removebg-preview.png" alt="" aria-hidden="true">
+      </div>
       <div class="history-copy">
         <h2 style="margin-bottom:18px; font-size:clamp(1.6rem,3.2vw,2.1rem);">Quiénes somos</h2>
         <p>Desde Córdoba, creamos y desarrollamos soluciones habitables para todo el país. Sabemos que un hogar es mucho más que una construcción: es el comienzo de una nueva etapa.</p>

@@ -394,6 +394,7 @@
   .hero-banner .hero-visual video{display:block;width:100%;height:100%;min-height:clamp(650px,78vh,900px);object-fit:cover;object-position:center;border-radius:0}
   /* El video es decorativo: impedir controles y el botón de reproducción nativo de iOS */
   .hero-banner .hero-visual video{pointer-events:none;-webkit-appearance:none;appearance:none}
+.hero-banner .hero-visual .hero-mobile-animation{display:none;width:100%;height:100%;object-fit:cover;object-position:center}
   .hero-banner .hero-visual video::-webkit-media-controls,
   .hero-banner .hero-visual video::-webkit-media-controls-panel,
   .hero-banner .hero-visual video::-webkit-media-controls-play-button,
@@ -411,6 +412,8 @@
     .hero.hero-banner{padding-top:78px}
     .hero-banner .hero-grid{min-height:570px}
     .hero-banner .hero-visual video{height:100%;min-height:570px;object-fit:cover;object-position:center}
+ .hero-banner .hero-visual video{display:none}
+ .hero-banner .hero-visual .hero-mobile-animation{display:block;position:absolute;inset:0;min-height:570px}
     .hero-banner .hero-copy{left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);width:calc(100% - 32px);max-width:560px;padding:18px 16px;background:rgba(247,245,237,.22);border-radius:20px}
     .hero-banner .eyebrow-plain{margin-bottom:13px;font-size:.72rem}
     .hero-banner h1{font-size:clamp(2.45rem,9.5vw,3.65rem);line-height:.98}
@@ -479,6 +482,7 @@
       </div>
       <div class="hero-visual" aria-label="Módulo habitacional de Loro Negro">
         <video autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" tabindex="-1" aria-label="Video de fondo de Loro Negro"><source src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/IMG_4795.mp4?v=20261016-hero-mp4-3" type="video/mp4">Tu navegador no admite video HTML5.</video>
+        <img class="hero-mobile-animation" src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/hero-mobile.webp?v=20261016-mobile-webp-1" alt="" aria-hidden="true" decoding="async">
         <div class="hero-stamp"><span class="stamp-number">01 / 03</span><strong>Diseño · Fabricación · Montaje</strong></div>
       </div>
       <div class="hero-bottomline"><span>Construcción en Wood Frame</span><span>Córdoba, Argentina</span><span>Modelos estándar y proyectos a medida</span></div>
@@ -840,15 +844,17 @@
     if (!video) return;
     const source = video.querySelector('source');
     const desktopSrc = 'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/IMG_4795.mp4?v=20261016-hero-mp4-3';
-    const mobileSrc = 'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/ab3e5d2d-cae3-49b6-9e67-cf20c0c45b0b-2.mp4?v=20261016-mobile-hero-1';
     const mobileQuery = window.matchMedia('(max-width: 700px)');
     let activeSrc = '';
     const selectVideo = () => {
-      const nextSrc = mobileQuery.matches ? mobileSrc : desktopSrc;
-      if (nextSrc === activeSrc) return;
-      activeSrc = nextSrc;
+      if (mobileQuery.matches) {
+        video.pause();
+        return;
+      }
+      if (desktopSrc === activeSrc) return;
+      activeSrc = desktopSrc;
       video.pause();
-      source.src = nextSrc;
+      source.src = desktopSrc;
       video.load();
     };
     video.muted = true;

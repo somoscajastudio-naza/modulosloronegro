@@ -826,10 +826,23 @@
 
 
 <script>
-  // Reintenta la reproducción en línea del video de portada en Safari/iOS.
+  // Elige el video más adecuado al dispositivo y lo reproduce en línea.
   (() => {
     const video = document.querySelector('.hero-banner .hero-visual video');
     if (!video) return;
+    const source = video.querySelector('source');
+    const desktopSrc = 'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/IMG_4795.mp4?v=20261016-hero-mp4-3';
+    const mobileSrc = 'https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/ab3e5d2d-cae3-49b6-9e67-cf20c0c45b0b-2.mp4?v=20261016-mobile-hero-1';
+    const mobileQuery = window.matchMedia('(max-width: 700px)');
+    let activeSrc = '';
+    const selectVideo = () => {
+      const nextSrc = mobileQuery.matches ? mobileSrc : desktopSrc;
+      if (nextSrc === activeSrc) return;
+      activeSrc = nextSrc;
+      video.pause();
+      source.src = nextSrc;
+      video.load();
+    };
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
@@ -841,11 +854,16 @@
       const attempt = video.play();
       if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
     };
-    video.addEventListener('loadedmetadata', startVideo, { once: true });
-    video.addEventListener('canplay', startVideo, { once: true });
+    video.addEventListener('loadedmetadata', startVideo);
+    video.addEventListener('canplay', startVideo);
     document.addEventListener('visibilitychange', startVideo);
     window.addEventListener('pageshow', startVideo);
-    startVideo();
+    selectVideo();
+    if (typeof mobileQuery.addEventListener === 'function') {
+      mobileQuery.addEventListener('change', selectVideo);
+    } else if (typeof mobileQuery.addListener === 'function') {
+      mobileQuery.addListener(selectVideo);
+    }
   })();
 </script>
 </body>

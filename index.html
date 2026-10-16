@@ -173,18 +173,38 @@
 
   /* PROCESO */
   .process-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .process-step{background:#fff;padding:30px 24px 34px;border:0;border-right:1px solid var(--line);min-width:0;}
-  .process-step:last-child{border-right:0;}
-  .process-step .num{font-size:2.15rem;font-weight:500;letter-spacing:-.06em;color:var(--rust);margin-bottom:38px;}
-  .process-step h3{font-size:1.06rem;line-height:1.3;}
-  @media(max-width:760px){.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.process-step:nth-child(2){border-right:0}.process-step:nth-child(-n+2){border-bottom:1px solid var(--line)}}
-  @media(max-width:460px){.process-step{padding:24px 16px}.process-step .num{margin-bottom:24px}}
-  .process-step .num{
-    font-family:var(--font-display); color:var(--rust);
-    font-size:1.1rem; margin-bottom:14px; display:block;
+  .process-step{
+    background:#fff;
+    padding:30px 24px 34px;
+    border:0;
+    border-right:1px solid var(--line);
+    min-width:0;
+    transition:background-color .22s ease,color .22s ease;
+    border-radius:3px;
   }
-  .process-step h3{font-size:1.02rem; margin-bottom:8px;}
-  .process-step p{color:var(--concrete); font-size:0.92rem; line-height:1.55;}
+  .process-step:last-child{border-right:0;}
+  .process-step .num{
+    font-family:var(--font-display);
+    color:var(--rust);
+    font-size:1.1rem;
+    margin-bottom:14px;
+    display:block;
+    transition:color .22s ease;
+  }
+  .process-step h3{font-size:1.02rem;line-height:1.3;margin-bottom:8px;transition:color .22s ease;}
+  .process-step p{color:var(--concrete);font-size:0.92rem;line-height:1.55;transition:color .22s ease;}
+  .process-step:hover,
+  .process-step:focus-within{
+    background:#777374;
+  }
+  .process-step:hover .num,
+  .process-step:hover h3,
+  .process-step:focus-within .num,
+  .process-step:focus-within h3{color:#fff;}
+  .process-step:hover p,
+  .process-step:focus-within p{color:rgba(255,255,255,.92);}
+  @media(max-width:760px){.process-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.process-step:nth-child(2){border-right:0}.process-step:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+  @media(max-width:460px){.process-step{padding:24px 16px}}
 
   .video-frame{
     margin-top:44px; border:1px solid var(--line);

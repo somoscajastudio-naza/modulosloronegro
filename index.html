@@ -428,14 +428,11 @@
 
 
   /* GALERÍA DE PROYECTOS */
-  .gallery-section{background:#f8f7f3}
-  .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1.6vw,18px)}
-  .gallery-item{display:none;position:relative;width:100%;min-width:0;padding:0;border:0;background:#e8e5dd;overflow:hidden;cursor:zoom-in;aspect-ratio:4/3;border-radius:12px}
-  .gallery-item:nth-child(-n+4){display:block}
-  .gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .gallery-more{margin:18px auto 0;display:block;border:1px solid #b8b2a8;background:transparent;color:inherit;padding:12px 18px;border-radius:999px;cursor:pointer;font:inherit}
-  .gallery-grid.is-expanded{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .gallery-grid.is-expanded .gallery-item{display:block}
+.gallery-section{background:#f8f7f3}
+  .gallery-grid{display:flex;align-items:center;gap:clamp(10px,1.6vw,20px);overflow-x:auto;overflow-y:hidden;padding:4px 2px 18px;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .gallery-grid::-webkit-scrollbar{display:none}
+  .gallery-item{display:block;position:relative;flex:0 0 clamp(220px,27vw,380px);width:clamp(220px,27vw,380px);min-width:0;padding:0;border:0;background:#e8e5dd;overflow:hidden;cursor:zoom-in;aspect-ratio:4/3;border-radius:12px;scroll-snap-align:start}
+  .gallery-item:nth-child(4n+1),.gallery-item:nth-child(4n+3){flex-basis:clamp(290px,36vw,500px);width:clamp(290px,36vw,500px);aspect-ratio:5/4}
   .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
   .gallery-item:hover img,.gallery-item:focus-visible img{transform:scale(1.045)}
   .gallery-item:focus-visible{outline:3px solid var(--rust);outline-offset:3px}
@@ -448,7 +445,7 @@
   .gallery-prev{left:0;top:50%;transform:translateY(-50%)}
   .gallery-next{right:0;top:50%;transform:translateY(-50%)}
   .gallery-count{position:absolute;bottom:0;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;letter-spacing:.08em}
-  @media(max-width:600px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.gallery-grid.is-expanded{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-grid:not(.is-expanded) .gallery-item:nth-child(3){order:3}.gallery-grid:not(.is-expanded) .gallery-item:nth-child(4){order:4}.gallery-item{border-radius:10px}.gallery-lightbox{padding:12px}.gallery-lightbox img{max-width:100%;max-height:calc(100% - 100px)}.gallery-close{right:0;top:0;width:42px;height:42px}.gallery-prev,.gallery-next{top:auto;bottom:8px;transform:none;width:42px;height:42px}.gallery-prev{left:calc(50% - 52px)}.gallery-next{right:calc(50% - 52px)}.gallery-count{bottom:20px;font-size:.75rem}}
+  @media(max-width:600px){.gallery-grid{gap:10px;padding-left:16px;padding-right:16px;margin-left:-16px;margin-right:-16px}.gallery-item{flex-basis:78vw;width:78vw;border-radius:10px}.gallery-item:nth-child(4n+1),.gallery-item:nth-child(4n+3){flex-basis:88vw;width:88vw}.gallery-lightbox{padding:12px}.gallery-lightbox img{max-width:100%;max-height:calc(100% - 100px)}.gallery-close{right:0;top:0;width:42px;height:42px}.gallery-prev,.gallery-next{top:auto;bottom:8px;transform:none;width:42px;height:42px}.gallery-prev{left:calc(50% - 52px)}.gallery-next{right:calc(50% - 52px)}.gallery-count{bottom:20px;font-size:.75rem}}
 
 </style>
 </head>
@@ -476,7 +473,7 @@
         <h1>Una forma distinta de <em>habitar.</em></h1>
         <p class="lead"><span class="hero-lead-desktop">Diseñamos, fabricamos y montamos módulos habitacionales con sistema Wood Frame. Un proceso claro, desde la primera idea hasta la entrega.</span><span class="hero-lead-mobile">Diseños fabricados con sistema Wood Frame. Un proceso claro, desde la primera idea.</span></p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="https://wa.me/5493548611303?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20m%C3%B3dulos%20habitacionales" target="_blank" rel="noopener">Hablemos de tu proyecto <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-primary" href="https://wa.me/5493548611303?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20m%C3%B3dulos%20habitacionales" target="_blank" rel="noopener">Hablemos de tu proyecto </a>
           <a class="hero-text-link" href="#modulos">Explorar los módulos <span aria-hidden="true">↓</span></a>
         </div>
       </div>
@@ -552,7 +549,6 @@
         <button class="gallery-item" type="button" data-gallery-index="8" aria-label="Ampliar fotografía: Interior del módulo habitacional"><img src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%204.12.52%20PM.jpeg" alt="Interior del módulo habitacional" loading="lazy" decoding="async"></button>
         <button class="gallery-item" type="button" data-gallery-index="9" aria-label="Ampliar fotografía: Vista interior adicional"><img src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/WhatsApp%20Image%202026-10-14%20at%204.12.52%20PM-2.jpeg" alt="Vista interior adicional" loading="lazy" decoding="async"></button>
       </div>
-      <button class="gallery-more" type="button" aria-expanded="false">Descubrir los interiores +</button>
     </div>
   </section>
 
@@ -657,13 +653,13 @@
           <h3>WhatsApp</h3>
           <p>Escribinos para consultar por los modelos, las adaptaciones posibles y una cotización.</p>
           <p class="contact-number">+54 9 3548 61-1303</p>
-          <span class="go">Cotizar ahora →</span>
+          <span class="go">Cotizar ahora</span>
         </a>
         <a class="contact-card" href="https://instagram.com/loronegro.lc" target="_blank" rel="noopener">
           <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="#A8432E" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="#A8432E" stroke="none"/></svg>
           <h3>Instagram</h3>
           <p>Conocé más sobre Loro Negro, nuestros procesos y los proyectos que compartimos.</p>
-          <span class="go">Ver perfil →</span>
+          <span class="go">Entrar al perfil</span>
         </a>
       </div>
     </div>
@@ -823,20 +819,6 @@
     targets.forEach((el) => observer.observe(el));
   })();
 </script>
-<script>
-  (() => {
-    const grid = document.querySelector('.gallery-grid');
-    const toggle = document.querySelector('.gallery-more');
-    if (!grid || !toggle) return;
-    toggle.addEventListener('click', () => {
-      const expanded = grid.classList.toggle('is-expanded');
-      toggle.setAttribute('aria-expanded', String(expanded));
-      toggle.textContent = expanded ? 'Mostrar solo las fachadas −' : 'Descubrir los interiores +';
-    });
-  })();
-</script>
-
-
 <script>
   // Elige el video más adecuado al dispositivo y lo reproduce en línea.
   (() => {

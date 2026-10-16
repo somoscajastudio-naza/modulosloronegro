@@ -849,6 +849,8 @@
     const selectVideo = () => {
       if (mobileQuery.matches) {
         video.pause();
+        source.removeAttribute('src');
+        video.load();
         return;
       }
       if (desktopSrc === activeSrc) return;
@@ -864,7 +866,7 @@
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
     const startVideo = () => {
-      if (document.visibilityState !== 'visible') return;
+      if (mobileQuery.matches || document.visibilityState !== 'visible') return;
       const attempt = video.play();
       if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
     };

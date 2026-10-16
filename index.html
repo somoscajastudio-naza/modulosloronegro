@@ -470,7 +470,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-label="Módulo habitacional de Loro Negro">
-        <video autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture aria-label="Video de fondo de Loro Negro"><source src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/IMG_4795.mp4?v=20261016-hero-mp4-2" type="video/mp4">Tu navegador no admite video HTML5.</video>
+        <video autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" tabindex="-1" aria-label="Video de fondo de Loro Negro"><source src="https://raw.githubusercontent.com/somoscajastudio-naza/modulosloronegro/main/IMG_4795.mp4?v=20261016-hero-mp4-3" type="video/mp4">Tu navegador no admite video HTML5.</video>
         <div class="hero-stamp"><span class="stamp-number">01 / 03</span><strong>Diseño · Fabricación · Montaje</strong></div>
       </div>
       <div class="hero-bottomline"><span>Construcción en Wood Frame</span><span>Córdoba, Argentina</span><span>Modelos estándar y proyectos a medida</span></div>
@@ -824,5 +824,29 @@
   })();
 </script>
 
+
+<script>
+  // Reintenta la reproducción en línea del video de portada en Safari/iOS.
+  (() => {
+    const video = document.querySelector('.hero-banner .hero-visual video');
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    const startVideo = () => {
+      if (document.visibilityState !== 'visible') return;
+      const attempt = video.play();
+      if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+    };
+    video.addEventListener('loadedmetadata', startVideo, { once: true });
+    video.addEventListener('canplay', startVideo, { once: true });
+    document.addEventListener('visibilitychange', startVideo);
+    window.addEventListener('pageshow', startVideo);
+    startVideo();
+  })();
+</script>
 </body>
 </html>

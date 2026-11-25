@@ -479,6 +479,19 @@
   .gallery-count{position:absolute;bottom:0;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;letter-spacing:.08em}
   @media(max-width:600px){.gallery-controls{display:none}.gallery-grid{gap:10px;padding-left:16px;padding-right:16px;margin-left:-16px;margin-right:-16px}.gallery-item{flex-basis:88vw;width:88vw;border-radius:10px}.gallery-lightbox{padding:12px}.gallery-lightbox img{max-width:100%;max-height:calc(100% - 100px)}.gallery-close{right:0;top:0;width:42px;height:42px}.gallery-prev,.gallery-next{top:auto;bottom:8px;transform:none;width:42px;height:42px}.gallery-prev{left:calc(50% - 52px)}.gallery-next{right:calc(50% - 52px)}.gallery-count{bottom:20px;font-size:.75rem}}
 
+
+  .module-preview{position:relative;display:block;width:100%;padding:0;border:0;background:#eee;cursor:zoom-in;overflow:hidden}
+  .module-preview .module-photo{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center 68%;padding:0;border:0}
+  .module-preview:focus-visible{outline:3px solid var(--rust);outline-offset:4px}
+  .module-expand{position:absolute;top:12px;right:12px;padding:3px 9px;border-radius:5px;background:rgba(255,255,255,.94);color:#292923;font-size:24px;line-height:1.2}
+  .module-dialog{border:0;padding:0;background:transparent;width:min(1000px,96vw);max-width:96vw;max-height:94dvh;color:#fff;overflow:visible}
+  .module-dialog::backdrop{background:rgba(20,19,17,.88)}
+  .module-dialog-content{position:relative}
+  .module-dialog-scroll{max-height:90dvh;overflow:auto;background:#faf9f5;overscroll-behavior:contain}
+  .module-dialog-image{display:block;width:100%;height:auto}
+  .module-dialog-close{position:absolute;right:12px;top:12px;z-index:1;width:44px;height:44px;border:1px solid #777;border-radius:50%;background:#fff;color:#222;font-size:28px;cursor:pointer}
+  .module-dialog-close:focus-visible{outline:3px solid var(--rust);outline-offset:3px}
+
 </style>
 </head>
 <body>
@@ -526,7 +539,7 @@
 
       <div class="modules-grid">
         <article class="module-card">
-          <img class="module-photo" src="./assets/modelos/imagen%2018%20mts.jpeg" alt="Modelo Refugio de 18 metros cuadrados" loading="lazy">
+          <button class="module-preview" type="button" data-module="refugio" aria-label="Ver plano y fachadas del modelo Refugio" aria-haspopup="dialog"><img class="module-photo" src="./assets/modelos/estandarizados/refugio.webp" alt="Modelo Refugio en el terreno del taller" loading="lazy" decoding="async" width="1086" height="1448"><span class="module-expand" aria-hidden="true">⤢</span></button>
           <div class="module-body">
             <h3>Refugio</h3>
             <p class="module-meta">18 m² · Monoambiente + baño</p>
@@ -535,7 +548,7 @@
           </div>
         </article>
         <article class="module-card">
-          <img class="module-photo" src="./assets/modelos/imagen24mts2.jpeg" alt="Modelo Sierra de 24 metros cuadrados" loading="lazy">
+          <button class="module-preview" type="button" data-module="sierra" aria-label="Ver plano y fachadas del modelo Sierra" aria-haspopup="dialog"><img class="module-photo" src="./assets/modelos/estandarizados/sierra.webp" alt="Modelo Sierra en el terreno del taller" loading="lazy" decoding="async" width="1086" height="1448"><span class="module-expand" aria-hidden="true">⤢</span></button>
           <div class="module-body">
             <h3>Sierra</h3>
             <p class="module-meta">24 m² · 1 dorm + estar/cocina + baño</p>
@@ -544,7 +557,7 @@
           </div>
         </article>
         <article class="module-card">
-          <img class="module-photo cumbre-photo" src="./assets/modelos/imagen%2030mts.jpeg" alt="Modelo Cumbre de 30 metros cuadrados al atardecer" loading="lazy">
+          <button class="module-preview" type="button" data-module="cumbre" aria-label="Ver plano y fachadas del modelo Cumbre" aria-haspopup="dialog"><img class="module-photo" src="./assets/modelos/estandarizados/cumbre.webp" alt="Modelo Cumbre en el terreno del taller" loading="lazy" decoding="async" width="1086" height="1448"><span class="module-expand" aria-hidden="true">⤢</span></button>
           <div class="module-body">
             <h3>Cumbre</h3>
             <p class="module-meta">30 m² · 1 dorm + estar/cocina + baño + deck</p>
@@ -908,5 +921,35 @@
     }
   })();
 </script>
+
+<dialog class="module-dialog" id="module-dialog" aria-label="Plano y fachadas del módulo">
+  <div class="module-dialog-content">
+    <button class="module-dialog-close" type="button" aria-label="Cerrar plano">×</button>
+    <div class="module-dialog-scroll"><img class="module-dialog-image" alt=""></div>
+  </div>
+</dialog>
+<script>
+(function(){
+  const dialog=document.getElementById('module-dialog');
+  const image=dialog.querySelector('.module-dialog-image');
+  let previousOverflow='';
+  document.querySelectorAll('.module-preview').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const name=button.dataset.module;
+      image.src='./assets/modelos/estandarizados/'+name+'-plano.webp';
+      image.alt='Lámina de '+name.charAt(0).toUpperCase()+name.slice(1)+' con planta, frente y lateral';
+      dialog.setAttribute('aria-label',image.alt);
+      previousOverflow=document.body.style.overflow;
+      dialog.showModal();
+      document.body.style.overflow='hidden';
+      dialog.querySelector('.module-dialog-scroll').scrollTop=0;
+    });
+  });
+  dialog.querySelector('.module-dialog-close').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+  dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;image.removeAttribute('src')});
+})();
+</script>
+
 </body>
 </html>
